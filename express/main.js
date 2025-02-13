@@ -5,8 +5,8 @@
 //EXPRESS REQUEST METHODS AND STATUS CODE
 //EXPRESS --WATCH
 
-
-const express = require("express");
+import express from "express";
+import { body } from "express-validator";
 
 const app = express();
 app.use(express.json());
@@ -99,11 +99,17 @@ app.put("/users/:id", (req, res) => {
 //add user
 app.post("/users", (req, res) => {
   const { id, name, email, age } = req.body;
-  if (!id || !name || !email || !age) {
-    res.status(400).json({
-      message: "Kindly provide all required fields",
-    });
-  }
+  // if (!id || !name || !email || !age) {
+  //   res.status(400).json({
+  //     message: "Kindly provide all required fields",
+  //   });
+  // }
+  //using body validation
+
+  body("id").isNumeric();
+  body("name").isString();
+  body("email").isEmail();
+  body("age").isNumeric();
   //check if id exist
   const userExist = db.users.find((user) => user.id === parseInt(id));
   if (userExist) {
