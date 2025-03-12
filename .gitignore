@@ -5,7 +5,6 @@ node_modules/
 *.log
 
 # Ignore environment variable files
-.env
 
 # Ignore build output
 dist/
@@ -20,5 +19,5 @@ build/
 Thumbs.db
 
 *env
-.env
 env
+config.bat
